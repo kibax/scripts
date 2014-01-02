@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo $?
+exitparam1=1
+exitparam2=1
+durchlauf=1
+while [ "${exitparam1}" -ne "0" ] && [ "${exitparam2}" -ne "0" ]
+do
+	echo Versuch: $durchlauf
+	wget -c -t 0 --connect-timeout=19 --retry-connrefused -w 19 --random-wait --ftp-user=anonymous --ftp-password=user@host.com $1
+	exitparam1=`expr $?`
+	wget -c -t 0 --connect-timeout=19 --retry-connrefused -w 19 --random-wait $1
+	exitparam2=`expr $?`
+	echo ohje
+	durchlauf=`expr $durchlauf + 1`
+	echo ohje, warte weil $exitparam1 oder $exitparam2
+	sleep 9s
+	echo weiter
+done

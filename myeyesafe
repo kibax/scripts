@@ -1,0 +1,20 @@
+#!/bin/bash
+
+
+aufloesungX=$(xrandr | grep "[0-9]\x[0-9]" | grep "conne" | grep "VGA")
+if [ -z "$aufloesungX" ]
+then
+	aufloesungX=$(xrandr | grep "[0-9]\x[0-9]" | grep "conne" | grep "LVDS")
+fi
+
+
+sleep 25m
+beep -f 5000 -l 100 -r 1
+sleep 2m
+
+beep -f 5000 -l 100 -r 2
+sleep 1m
+
+beep -f 5000 -l 100 -r 2
+sleep 0.2s
+beep -f 4700 -l 1500 -r 1
